@@ -5,6 +5,11 @@ Handlebars.registerHelper('push', function(context) {
     return "home.pushViewController('"+context+"')";
 });
 
+Handlebars.registerHelper('insert', function(context) {
+	var cid = "chunck-" + Date.now()
+	setTimeout(function(){ unova.tpl.insert(cid, context) }, 1);
+    return new Handlebars.SafeString("<div id='"+cid+"'></div>");
+});
 
 var unova = {}
 
@@ -67,7 +72,6 @@ unova.nav = {
 
 		navigation.popViewController = function(){
 
-
 			var poppedController = navigation.stack.pop()
 			var newTopController = navigation.stack.last()
 
@@ -100,6 +104,36 @@ unova.tpl = {
 
     precompiled_templates:{},
 
+    insert: function(divId, templateName) {
+
+    	function display(){
+    		var tag = document.getElementById(divId);
+			tag.innerHTML = unova.tpl.precompiled_templates[templateName]()
+		}
+
+		if(unova.tpl.precompiled_templates[templateName]){
+	        display();
+		}else{
+		
+            var r = new XMLHttpRequest();
+            var base = "templates/";
+            var loc = base + templateName + ".template.html";
+            
+            unova.log("loading html template: " + loc);
+            
+            r.open("GET", loc, true);
+            r.onreadystatechange = function () {
+                if (r.readyState == 4 && r.status == 200){
+                    unova.tpl.precompiled_templates[templateName] = Handlebars.compile(r.responseText);
+                	display();
+                }
+            };
+
+            r.send();
+		}
+
+    },
+
 	compile: function(divTag, data, then){
 
 		function display(){
@@ -110,23 +144,23 @@ unova.tpl = {
 		if(unova.tpl.precompiled_templates[divTag.templateName]){
 	        display();
 		}else{
-			
-	            var r = new XMLHttpRequest();
-	            var base = "templates/";
-	            var templateName = divTag.templateName
-	            var loc = base + templateName + ".template.html";
-	            
-	            unova.log("loading html template: " + loc);
-	            
-	            r.open("GET", loc, true);
-	            r.onreadystatechange = function () {
-	                if (r.readyState == 4 && r.status == 200){
-	                    unova.tpl.precompiled_templates[templateName] = Handlebars.compile(r.responseText);
-	                	display();
-	                }
-	            };
+		
+            var r = new XMLHttpRequest();
+            var base = "templates/";
+            var templateName = divTag.templateName
+            var loc = base + templateName + ".template.html";
+            
+            unova.log("loading html template: " + loc);
+            
+            r.open("GET", loc, true);
+            r.onreadystatechange = function () {
+                if (r.readyState == 4 && r.status == 200){
+                    unova.tpl.precompiled_templates[templateName] = Handlebars.compile(r.responseText);
+                	display();
+                }
+            };
 
-	            r.send();
+            r.send();
 		}
 	}
 }
@@ -172,3 +206,13 @@ if (!Array.prototype.last){
         return this[this.length - 1];
     };
 };
+
+if (!Element.prototype.toHTMLString){
+	Element.prototype.toHTMLString = function() {
+    	var tmpNode = document.createElement( "div" );
+   		tmpNode.appendChild(this.cloneNode(true));
+   		var str = tmpNode.innerHTML;
+   		tmpNode = node = null;
+   		return str;
+	}
+}
