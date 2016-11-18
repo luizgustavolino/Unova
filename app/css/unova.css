@@ -1,0 +1,111 @@
+/* unova.css */
+html{ background-color: black; }
+
+.tenpad { padding: 10px; }
+.fullw { width: 100%; }
+.fullh { height: 100%; }
+.fullwh { width: 100%; height: 100%; }
+
+#clock {
+	width: 320px;
+	height: 20px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: white;
+	text-align: center;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 20px;
+	background-color: #7A993D;
+}
+
+.navigation-bar{
+	height: 44px;
+	width: 100%;
+	text-align: center;
+	background-color: #7A993D;
+}
+
+.navigation-bar h1{
+	color: white;
+	font-size: 22px;
+	line-height: 44px;
+	font-weight: normal;
+}
+
+.unova-nav-controller{
+	overflow: hidden;
+}
+
+.unova-nav-controller, .unova-nav{
+	width: 320px;
+	height: 100%;
+	float: left;
+}
+
+.unova-nav-controller .jumbotron {
+	border-radius: 10px;
+}
+
+.navigation-view{
+	background-color: #fafafa;
+	height: calc(100% - 44px);
+	overflow: scroll;
+	width: 100%;
+}
+
+.navigation-view h3{
+	color: #333;
+	font-weight: normal;
+}
+
+.unova-nav-controller input{
+	border: 1px solid #2e6da4;
+}
+
+.unova-icon {
+	float: left;
+	width: 50px;
+	height: 100px;
+	font-size: 36px;
+	line-height: 38px;
+}
+
+.pin-list h4, .pin-list span{
+	color: #2e6da4;
+}
+
+/* - UNOVA UI TRANSITIONS - */
+
+.viewing {
+  margin-left: 0px;
+}
+
+.pushed {
+  margin-left: -320px;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+    background-color: rgba(1, 1, 1, 0.01);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+#back-button {
+    position: fixed;
+    background: white;
+    height: 50px;
+    width: 30px;
+    top: 16px;
+    left: 6px;
+    cursor: pointer;
+    -webkit-mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB/0lEQVRoQ+3YTU4bMRQH8Pcml4BFb1Cx5uMAqIuKsSNxAjZhgRChpAt2XYAUPlZwCTR+MuIGSC10U0F7hB6hLGOjQYmUBZB5z56Moybb2DP/n5/t8QzCjP9wxvPDHNB0BecV+F8qgFrrjvd+xzm3gIg/W61WryiKX6EDMI0phHme9xGxOx4WEZ8Gg8Ena+1tCKJuwKvhR4FLhPd+jYgepIg6Ae+GHwt8Q0SfUwNUDQ/Oub/W2g8pASqHH4b+QUSrqQC44QERtTGGUgCwwwPAHhGdS8OX/WIt4kbCxwI0Fj4GoNHwoYDGw4cAkggvBSQTXgJIKjwboJQ6BoAeY98O3ucn3avyc6Ddbi855zinxtrDsyqgtd723l9MGpHh/1MJzwLked5BxMuZBSilPgLA74qAstlUqlB5DZSJtNbfvPeHDESXiM4Y7dlNWYDy8KeUOmLuRLUiuICXdZMSQgIQIRBx3xhzyp4jEzpIAckgQgBJIEIBIgQAfCGikxjTKQagUUQsgBRxQET9kErEBEgRm0R0JUXEBrARiHhvjFlOCcBCpPhpcTSYVZ/Y10S0kVoFKiGcc/+yLFshoj+pAt6cTmV4AFi31n6Xhme90ITcZHgA3AKAXQBYBIC7LMu+FkXxGHjdaN9GQ3OI+9exjYrDSDrOAZJRi9lnXoGYoym51jMpKNsx9gutjgAAAABJRU5ErkJggg==') center / contain no-repeat;
+}
