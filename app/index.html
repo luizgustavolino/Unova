@@ -15,12 +15,14 @@
 
 	</head>
 	<body class="fullwh">
-		<div id="clock">5:33 PM</div>
-		<div id="mobile-container" class="fullwh">
+		
+		<div id="mobile-container" class="fullh">
+			<div id="clock">5:33 PM</div>
 			<button id="back-button"
 					class="back hidden"
 					onclick="home.popViewController()"></button>
 		</div>
+
 		<script type="text/javascript">
 			
 			var home = unova.nav.makeNavigationController()
@@ -29,5 +31,6 @@
 			home.setRootController("busca")
 
 		</script>
+
 	</body>
 </html>
